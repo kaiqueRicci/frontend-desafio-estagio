@@ -1,4 +1,4 @@
-const API_URL = 'https://desafio-estagio.onrender.com';
+const API_URL = 'https://desafio-estagio.onrender.com/api';
 
 
 const wrappers = document.querySelectorAll('.wrapper-left .wrapper');
