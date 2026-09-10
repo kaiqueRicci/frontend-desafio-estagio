@@ -87,7 +87,7 @@ document.getElementById('form-transacao').addEventListener('submit', async (e) =
   const valor = document.getElementById('valor-transacao').value;
   const tipo = document.getElementById('tipo-transacao').value;
   const msgErro = document.getElementById('msg-erro');
-  msgErro.innerText = '';
+  if (msgErro) msgErro.innerText = '';
 
   const resposta = await fetch(`${API_URL}/transacoes`, {
     method: 'POST',
@@ -104,11 +104,12 @@ document.getElementById('form-transacao').addEventListener('submit', async (e) =
     alert('Transação cadastrada com sucesso!');
     document.getElementById('form-transacao').reset();
   } else {
+    // Lê como texto para evitar quebrar caso o back-end retorne uma mensagem simples
     const erroTexto = await resposta.text();
-    msgErro.innerText = erroTexto; 
+    alert('Erro ao cadastrar transação: ' + erroTexto);
+    if (msgErro) msgErro.innerText = erroTexto; 
   }
 });
-
 
 document.getElementById('btn-atualizar-totais').addEventListener('click', carregarTotais);
 
