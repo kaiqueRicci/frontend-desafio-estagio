@@ -1,16 +1,13 @@
 const API_URL = 'https://desafio-estagio.onrender.com/api';
 
-
 const wrappers = document.querySelectorAll('.wrapper-left .wrapper');
 const telas = document.querySelectorAll('.tela');
 
 wrappers.forEach((item, index) => {
- 
   if (index === 0) return;
 
   item.addEventListener('click', () => {
     telas.forEach(tela => tela.style.display = 'none');
-
     
     if (index === 1) document.getElementById('tela-inicio').style.display = 'block';
     if (index === 2) {
@@ -27,7 +24,6 @@ wrappers.forEach((item, index) => {
     }
   });
 });
-
 
 async function carregarPessoas() {
   const resposta = await fetch(`${API_URL}/pessoas`);
@@ -59,15 +55,18 @@ document.getElementById('form-pessoa').addEventListener('submit', async (e) => {
 
   document.getElementById('form-pessoa').reset();
   carregarPessoas();
+  
+  
+  carregarSelectPessoas();
 });
 
 async function deletarPessoa(id) {
   if (confirm('Tem certeza? Isso excluirá todas as transações da pessoa.')) {
     await fetch(`${API_URL}/pessoas/${id}`, { method: 'DELETE' });
     carregarPessoas();
+    carregarSelectPessoas(); 
   }
 }
-
 
 async function carregarSelectPessoas() {
   const resposta = await fetch(`${API_URL}/pessoas`);
@@ -104,7 +103,6 @@ document.getElementById('form-transacao').addEventListener('submit', async (e) =
     alert('Transação cadastrada com sucesso!');
     document.getElementById('form-transacao').reset();
   } else {
-    // Lê como texto para evitar quebrar caso o back-end retorne uma mensagem simples
     const erroTexto = await resposta.text();
     alert('Erro ao cadastrar transação: ' + erroTexto);
     if (msgErro) msgErro.innerText = erroTexto; 
