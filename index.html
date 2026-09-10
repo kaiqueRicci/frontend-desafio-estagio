@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles/index.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <main class="container">
+      <section class="left">
+        <div class="wrapper-left">
+          <div class="wrapper first-item">
+            <div class="icon first-icon">
+              <i class="bx bx-signal-5"></i>
+            </div>
+            <div class="info">
+              <p class="first-text">ControleGastosWeb</p>
+            </div>
+          </div>
+
+          <div class="wrapper">
+            <div class="icon">
+              <i class="bx bx-home"></i>
+            </div>
+            <div class="info">
+              <p>Início</p>
+            </div>
+          </div>
+
+          <div class="wrapper">
+            <div class="icon">
+              <i class="bx bx-user"></i>
+            </div>
+            <div class="info">
+              <p>Cadastro pessoas</p>
+            </div>
+          </div>
+
+          <div class="wrapper">
+            <div class="icon">
+              <i class="bx bx-file"></i>
+            </div>
+            <div class="info">
+              <p>Cadastro de transações</p>
+            </div>
+          </div>
+
+          <div class="wrapper">
+            <div class="icon">
+              <i class="bx bx-time"></i>
+            </div>
+            <div class="info">
+              <p>Consulta de totais</p>
+            </div>
+          </div>
+        </div>
+        </div>
+      </section>
+
+      <section class="right">
+        <!-- TELA 1: INÍCIO -->
+        <div id="tela-inicio" class="tela active">
+          <h1>Bem-vindo ao ControleGastosWeb</h1>
+          <p>Utilize o menu lateral para navegar entre os cadastros e consultas do sistema.</p>
+        </div>
+
+        
+        <div id="tela-pessoas" class="tela" style="display: none;">
+          <h2>Cadastro de Pessoas</h2>
+          <form id="form-pessoa">
+            <input type="text" id="nome-pessoa" placeholder="Nome completo" required />
+            <input type="number" id="idade-pessoa" placeholder="Idade" required />
+            <button type="submit">Salvar Pessoa</button>
+          </form>
+
+          <h3>Pessoas Cadastradas</h3>
+          <table id="tabela-pessoas">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+
+        
+        <div id="tela-transacoes" class="tela" style="display: none;">
+          <h2>Cadastro de Transações</h2>
+          <form id="form-transacao">
+            <select id="select-pessoa" required>
+              <option value="">Selecione a pessoa</option>
+            </select>
+            <input type="text" id="desc-transacao" placeholder="Descrição" required />
+            <input type="number" step="0.01" id="valor-transacao" placeholder="Valor (R$)" required />
+            <select id="tipo-transacao" required>
+              <option value="RECEITA">Receita</option>
+              <option value="DESPESA">Despesa</option>
+            </select>
+            <button type="submit">Cadastrar Transação</button>
+          </form>
+          <p id="msg-erro" style="color: red;"></p>
+        </div>
+
+        
+        <div id="tela-totais" class="tela" style="display: none;">
+          <h2>Consulta de Totais (Relatório Geral)</h2>
+          <button id="btn-atualizar-totais">Atualizar Relatório</button>
+          
+          <div class="card-geral">
+            <p><strong>Receita Geral:</strong> R$ <span id="geral-receita">0.00</span></p>
+            <p><strong>Despesa Geral:</strong> R$ <span id="geral-despesa">0.00</span></p>
+            <p><strong>Saldo Líquido Geral:</strong> R$ <span id="geral-saldo">0.00</span></p>
+          </div>
+
+          <table id="tabela-totais-pessoas">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Idade</th>
+                <th>Total Receitas</th>
+                <th>Total Despesas</th>
+                <th>Saldo</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <script src="/script/index.js"></script>
+  </body>
+</html>
